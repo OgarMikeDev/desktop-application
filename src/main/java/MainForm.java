@@ -46,6 +46,10 @@ public class MainForm {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                String newName = nameTextArea.getText().replaceFirst("Name", "");
+                String newSurnameOne = surnameOneTextArea.getText().replaceFirst("SurnameOne", "");
+                String newSurnameTwo = surnameTwoTextArea.getText().replaceFirst("SurnameTwo", "");
+
                 Integer nameInitially = "Name".length();
                 Integer surnameInitially = "SurNameOne".length();
                 if (nameTextArea.getText().length() <= nameInitially || surnameOneTextArea.getText().length() <= surnameInitially) {
@@ -58,6 +62,30 @@ public class MainForm {
                             "Header for text",
                             JOptionPane.PLAIN_MESSAGE
                     );
+                } else if (nameTextArea.getText().length() >= nameInitially || surnameOneTextArea.getText().length() >= surnameInitially && buttonCollapse.getText() == "Collapse") {
+                    buttonCollapse.setText("Expand");
+
+
+                    JOptionPane.showMessageDialog(
+                            mainPanel,
+                            newName.concat(" ").concat(newSurnameOne).concat(" ").concat(newSurnameTwo),
+                            "Header for Name and SurNameOne and SurNameTwo",
+                            JOptionPane.PLAIN_MESSAGE
+                    );
+                } else if (nameTextArea.getText().length() >= nameInitially || surnameOneTextArea.getText().length() >= surnameInitially && buttonCollapse.getText() == "Expand") {
+                    buttonCollapse.setText("Collapse");
+                    String regexForNameAndSurname = "A{1}[a-z]+";
+
+                    if (newName.matches(regexForNameAndSurname) && newSurnameTwo.matches(regexForNameAndSurname)) {
+                        JOptionPane.showMessageDialog(
+                                mainPanel,
+                                newName.concat(" ").concat(newSurnameOne).concat(" ").concat(newSurnameTwo),
+                                "Header for Name and SurNameOne and SurNameTwo",
+                                JOptionPane.PLAIN_MESSAGE
+                        );
+                    }
+                } else {
+                    System.out.println("Enter correct data");
                 }
             }
         });
