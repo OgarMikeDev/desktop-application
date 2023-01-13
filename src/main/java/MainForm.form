@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="MainForm">
+  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="96263" class="javax.swing.JTextField" binding="Name">
+        <constraints border-constraint="West"/>
+        <properties>
+          <horizontalAlignment value="4"/>
+          <text value="Name"/>
+        </properties>
+      </component>
+      <component id="3d350" class="javax.swing.JTextField" binding="Surname">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <alignmentX value="1.0"/>
+          <alignmentY value="1.0"/>
+          <autoscrolls value="true"/>
+          <horizontalAlignment value="0"/>
+          <inheritsPopupMenu value="false"/>
+          <margin top="2" left="6" bottom="2" right="6"/>
+          <minimumSize width="100" height="100"/>
+          <preferredSize width="100" height="100"/>
+          <text value="Surname"/>
+        </properties>
+      </component>
+      <component id="105d5" class="javax.swing.JTextField" binding="SurnameTwo" custom-create="true">
+        <constraints border-constraint="East"/>
+        <properties>
+          <text value="SurnameTwo"/>
+        </properties>
+      </component>
+      <grid id="b1f6a" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="2f47" class="javax.swing.JButton" binding="CollapsButton">
+            <constraints/>
+            <properties>
+              <actionCommand value="ButtonCollaps"/>
+              <text value="Collaps"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
