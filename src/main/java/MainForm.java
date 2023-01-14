@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.beans.PropertyChangeListener;
 
 public class MainForm {
+    private String header = "Header for Name and SurNameOne and SurNameTwo";
     private JPanel mainPanel;
     private JButton buttonCollapse;
     private JTextArea nameTextArea;
@@ -46,13 +47,20 @@ public class MainForm {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                String newName = nameTextArea.getText().replaceFirst("Name", "");
-                String newSurnameOne = surnameOneTextArea.getText().replaceFirst("SurnameOne", "");
-                String newSurnameTwo = surnameTwoTextArea.getText().replaceFirst("SurnameTwo", "");
+                //Full name
+                String newName = nameTextArea.getText().replaceFirst("Name", "").strip();
+                String newSurnameOne = surnameOneTextArea.getText().replaceFirst("SurnameOne", "").strip();
+                String newSurnameTwo = surnameTwoTextArea.getText().replaceFirst("SurnameTwo", "").strip();
 
+
+                //Column names
                 Integer nameInitially = "Name".length();
-                Integer surnameInitially = "SurNameOne".length();
+                Integer surnameInitially = "SurnameOne".length();
+
+
+                //If error
                 if (nameTextArea.getText().length() <= nameInitially || surnameOneTextArea.getText().length() <= surnameInitially) {
+                    //Change the color of the blocks to red
                     nameTextArea.setBackground(Color.RED);
                     surnameOneTextArea.setBackground(Color.RED);
 
@@ -62,30 +70,51 @@ public class MainForm {
                             "Header for text",
                             JOptionPane.PLAIN_MESSAGE
                     );
-                } else if (nameTextArea.getText().length() >= nameInitially || surnameOneTextArea.getText().length() >= surnameInitially && buttonCollapse.getText() == "Collapse") {
+                    return;
+                }
+
+
+                //If full name exist and button equals "Collapse"
+                if (nameTextArea.getText().length() >= nameInitially && surnameOneTextArea.getText().length() >= surnameInitially && buttonCollapse.getText() == "Collapse") {
+                    //text button "Collapse" set "Expand"
                     buttonCollapse.setText("Expand");
 
 
                     JOptionPane.showMessageDialog(
                             mainPanel,
                             newName.concat(" ").concat(newSurnameOne).concat(" ").concat(newSurnameTwo),
-                            "Header for Name and SurNameOne and SurNameTwo",
+                            header,
                             JOptionPane.PLAIN_MESSAGE
                     );
-                } else if (nameTextArea.getText().length() >= nameInitially || surnameOneTextArea.getText().length() >= surnameInitially && buttonCollapse.getText() == "Expand") {
-                    buttonCollapse.setText("Collapse");
-                    String regexForNameAndSurname = "A{1}[a-z]+";
+                    return;
+                }
 
-                    if (newName.matches(regexForNameAndSurname) && newSurnameTwo.matches(regexForNameAndSurname)) {
+
+                //If full name correct and button equals "Expand"
+                if (nameTextArea.getText().length() >= nameInitially && surnameOneTextArea.getText().length() >= surnameInitially && buttonCollapse.getText() == "Expand") {
+                    String regexForNameAndSurname = "[A-Z][a-z]+";
+
+                    if (newName.replaceAll("\s+", "").matches(regexForNameAndSurname) && newSurnameOne.replaceAll("\s+", "").matches(regexForNameAndSurname)) {
+                        //text button "Expand" set "Collapse"
+                        buttonCollapse.setText("Collapse");
                         JOptionPane.showMessageDialog(
                                 mainPanel,
                                 newName.concat(" ").concat(newSurnameOne).concat(" ").concat(newSurnameTwo),
-                                "Header for Name and SurNameOne and SurNameTwo",
+                                header,
                                 JOptionPane.PLAIN_MESSAGE
                         );
+                    } else {
+                        System.out.print(newName + " " + newSurnameOne);
+                        JOptionPane.showMessageDialog(
+                                mainPanel,
+                                "Please enter correct data for First Name and SurNameOne",
+                                "Header for invalid data",
+                                JOptionPane.PLAIN_MESSAGE
+
+                        );
+                        return;
                     }
-                } else {
-                    System.out.println("Enter correct data");
+                    return;
                 }
             }
         });
