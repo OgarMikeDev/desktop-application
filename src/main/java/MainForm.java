@@ -48,9 +48,9 @@ public class MainForm {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Full name
-                String newName = nameTextArea.getText().replaceFirst("Name", "").strip();
-                String newSurnameOne = surnameOneTextArea.getText().replaceFirst("SurnameOne", "").strip();
-                String newSurnameTwo = surnameTwoTextArea.getText().replaceFirst("SurnameTwo", "").strip();
+                String newName = nameTextArea.getText().replaceFirst("Name", "").trim();
+                String newSurnameOne = surnameOneTextArea.getText().replaceFirst("SurnameOne", "").trim();
+                String newSurnameTwo = surnameTwoTextArea.getText().replaceFirst("SurnameTwo", "").trim();
 
 
                 //Column names
@@ -94,7 +94,7 @@ public class MainForm {
                 if (nameTextArea.getText().length() >= nameInitially && surnameOneTextArea.getText().length() >= surnameInitially && buttonCollapse.getText() == "Expand") {
                     String regexForNameAndSurname = "[A-Z][a-z]+";
 
-                    if (newName.replaceAll("\s+", "").matches(regexForNameAndSurname) && newSurnameOne.replaceAll("\s+", "").matches(regexForNameAndSurname)) {
+                    if (newName.replaceAll("\\s+", "").matches(regexForNameAndSurname) && newSurnameOne.replaceAll("\\s+", "").matches(regexForNameAndSurname)) {
                         //text button "Expand" set "Collapse"
                         buttonCollapse.setText("Collapse");
                         JOptionPane.showMessageDialog(
